@@ -1,3 +1,4 @@
+import { PageSkeleton } from "@/components/dashboard/PageSkeleton";
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -77,9 +78,7 @@ export default function LabBillingPage() {
 
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center py-20">
-        <div className="h-8 w-8 animate-spin rounded-full border-4 border-secondary border-t-transparent" />
-      </div>
+      <PageSkeleton variant="list" />
     );
   }
 

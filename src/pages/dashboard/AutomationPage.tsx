@@ -1,3 +1,4 @@
+import { PageSkeleton } from "@/components/dashboard/PageSkeleton";
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -52,7 +53,7 @@ export default function AutomationPage() {
     return (
       <div className="space-y-6">
         <PageHeader title="Automation" description="Automated workflows and reminders" />
-        <div className="flex items-center justify-center py-20 text-muted-foreground">Loading...</div>
+        <PageSkeleton />
       </div>
     );
   }

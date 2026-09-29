@@ -1,3 +1,4 @@
+import { PageSkeleton } from "@/components/dashboard/PageSkeleton";
 import { useState } from "react";
 import { useNavigate, Navigate } from "react-router-dom";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
@@ -75,7 +76,7 @@ export default function BranchesPage() {
       </PageHeader>
 
       {isLoading ? (
-        <div className="flex justify-center py-16"><Loader2 className="h-6 w-6 animate-spin text-muted-foreground" /></div>
+        <PageSkeleton variant="list" />
       ) : branches.length === 0 ? (
         <Card><CardContent className="flex flex-col items-center gap-3 py-16 text-center">
           <GitBranch className="h-10 w-10 text-muted-foreground" />
