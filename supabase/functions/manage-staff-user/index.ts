@@ -136,7 +136,7 @@ serve(async (req) => {
         });
       }
 
-      if (["owner", "admin"].includes(targetMembership.role) && !isOwnerOrSuper) {
+      if (["owner", "admin", "manager"].includes(targetMembership.role) && !isOwnerOrSuper) {
         return new Response(JSON.stringify({ error: "Only the clinic owner or a super admin can change an admin's password" }), {
           status: 403,
           headers: { ...corsHeaders, "Content-Type": "application/json" },
