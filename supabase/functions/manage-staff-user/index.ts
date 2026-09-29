@@ -50,7 +50,7 @@ serve(async (req) => {
 
     const { data: isSuperAdmin } = await supabaseAdmin.rpc("is_super_admin", { _user_id: caller.id });
 
-    if (!isSuperAdmin && (!membership || !["owner", "admin"].includes(membership.role))) {
+    if (!isSuperAdmin && (!membership || !["owner", "admin", "manager"].includes(membership.role))) {
       return new Response(JSON.stringify({ error: "Forbidden: owner or admin role required" }), {
         status: 403,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
@@ -60,8 +60,8 @@ serve(async (req) => {
     const isOwnerOrSuper = isSuperAdmin || membership?.role === "owner";
 
     if (action === "create_user") {
-      if (role === "admin" && !isOwnerOrSuper) {
-        return new Response(JSON.stringify({ error: "Only the clinic owner or a super admin can create admins" }), {
+      if ((role === "admin" || role === "manager") && !isOwnerOrSuper) {
+        return new Response(JSON.stringify({ error: "Only the clinic owner or a super admin can create admins or managers" }), {
           status: 403,
           headers: { ...corsHeaders, "Content-Type": "application/json" },
         });
@@ -86,6 +86,7 @@ serve(async (req) => {
 
       // Add user as org member with the specified role
       const orgRole = role === "admin" ? "admin"
+        : role === "manager" ? "manager"
         : role === "dentist" ? "dentist"
         : role === "hygienist" ? "hygienist"
         : role === "assistant" ? "assistant"
