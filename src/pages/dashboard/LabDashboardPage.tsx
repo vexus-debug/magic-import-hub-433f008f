@@ -1,3 +1,4 @@
+import { PageSkeleton } from "@/components/dashboard/PageSkeleton";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -46,9 +47,7 @@ export default function LabDashboardPage() {
 
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center py-20">
-        <div className="h-8 w-8 animate-spin rounded-full border-4 border-secondary border-t-transparent" />
-      </div>
+      <PageSkeleton variant="dashboard" />
     );
   }
 

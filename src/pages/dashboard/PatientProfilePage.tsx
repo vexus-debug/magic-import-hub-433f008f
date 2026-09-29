@@ -1,3 +1,4 @@
+import { PageSkeleton } from "@/components/dashboard/PageSkeleton";
 import { PatientImageThumb } from "@/components/dashboard/PatientImageThumb";
 import { useParams, useNavigate, useSearchParams } from "react-router-dom";
 import { useRef, useState } from "react";
@@ -158,7 +159,7 @@ export default function PatientProfilePage() {
   const uploadDoc = useUploadPatientDocument();
 
   if (isLoading) {
-    return <div className="flex items-center justify-center py-20"><p className="text-muted-foreground">Loading...</p></div>;
+    return <PageSkeleton variant="profile" />;
   }
 
   if (!patient) {
