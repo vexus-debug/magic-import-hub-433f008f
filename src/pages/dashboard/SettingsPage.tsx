@@ -27,7 +27,7 @@ const orgRoles = ["owner", "admin", "dentist", "assistant", "hygienist", "recept
 export default function SettingsPage() {
   const { currentOrg } = useOrg();
   const { roles: platformRoles } = useAuth();
-  const isAdmin = currentOrg?.role === "owner" || currentOrg?.role === "admin";
+  const isAdmin = currentOrg?.role === "owner" || (currentOrg?.role === "admin" || currentOrg?.role === "manager");
   const canManageAdmins = currentOrg?.role === "owner" || platformRoles.includes("super_admin");
 
   // Clinic settings

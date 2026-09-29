@@ -1,4 +1,4 @@
-type OrgRole = "owner" | "admin" | "dentist" | "receptionist" | "hygienist" | "assistant" | "accountant" | "lab_technician" | "lab_assistant";
+type OrgRole = "owner" | "admin" | "manager" | "dentist" | "receptionist" | "hygienist" | "assistant" | "accountant" | "lab_technician" | "lab_assistant";
 
 // Maps each relative dashboard path to the org roles that can access it
 export const PAGE_ROLE_ACCESS: Record<string, OrgRole[]> = {
@@ -138,7 +138,7 @@ export const EYE_PAGE_ROLE_ACCESS: Record<string, OrgRole[]> = {
  * orgRole is the user's role within the current organization.
  */
 export function hasPageAccess(orgRole: string, relativePath: string, clinicType?: string): boolean {
-  if (orgRole === "owner" || orgRole === "admin") return true;
+  if (orgRole === "owner" || orgRole === "admin" || orgRole === "manager") return true;
   const map = clinicType === "eye" ? { ...PAGE_ROLE_ACCESS, ...EYE_PAGE_ROLE_ACCESS } : PAGE_ROLE_ACCESS;
   // Handle patient profile sub-routes
   if (relativePath.startsWith("patients/")) {
