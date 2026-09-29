@@ -14,6 +14,7 @@ export function BranchSwitcher({ collapsed }: { collapsed?: boolean }) {
   const navigate = useNavigate();
 
   if (!currentOrg || !mainOrgId) return null;
+  if (currentOrg.role === "manager") return null;
 
   const family = orgMemberships.filter(
     (m) => m.org_id === mainOrgId || m.parent_org_id === mainOrgId,

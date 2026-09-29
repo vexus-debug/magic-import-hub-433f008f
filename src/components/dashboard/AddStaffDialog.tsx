@@ -24,7 +24,7 @@ export function AddStaffDialog({ open, onOpenChange }: AddStaffDialogProps) {
   const { currentOrg } = useOrg();
   const { roles: platformRoles } = useAuth();
   const canManageAdmins = currentOrg?.role === "owner" || platformRoles.includes("super_admin");
-  const roles = canManageAdmins ? ["admin", ...baseRoles] : baseRoles;
+  const roles = canManageAdmins ? ["admin", "manager", ...baseRoles] : baseRoles;
   const [form, setForm] = useState({ full_name: "", role: "dentist", phone: "", email: "", specialty: "" });
   const [createAccount, setCreateAccount] = useState(false);
   const [password, setPassword] = useState("");

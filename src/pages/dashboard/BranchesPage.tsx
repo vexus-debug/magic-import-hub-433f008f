@@ -28,7 +28,7 @@ export default function BranchesPage() {
   const [form, setForm] = useState({ name: "", phone: "", address: "", email: "" });
 
   const orgId = currentOrg?.org_id;
-  const canManage = currentOrg?.role === "owner" || currentOrg?.role === "admin";
+  const canManage = currentOrg?.role === "owner" || (currentOrg?.role === "admin" || currentOrg?.role === "manager");
 
   const { data: branches = [], isLoading } = useQuery({
     queryKey: ["org-branches", orgId],

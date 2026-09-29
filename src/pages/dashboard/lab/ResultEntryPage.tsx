@@ -22,7 +22,7 @@ type Values = Record<string, Record<string, any>>;
 export default function ResultEntryPage() {
   const { serial } = useParams<{ serial: string }>();
   const { currentOrg } = useOrg();
-  const isAdmin = currentOrg?.role === "owner" || currentOrg?.role === "admin";
+  const isAdmin = currentOrg?.role === "owner" || (currentOrg?.role === "admin" || currentOrg?.role === "manager");
 
   const { data: form } = useTestFormBySerial(serial);
   const { data: items = [] } = useFormItems(form?.id);
